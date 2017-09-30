@@ -1,6 +1,6 @@
-A loop-up-dictionary addon for the **modernizing** firefox 57+.
+A loop-up-dictionary addon for the **modernizing?!?!** firefox 57+.
 
-This addon is fork from another firefox addon [Mactionary](https://addons.mozilla.org/en-US/firefox/addon/mactionary/)
+This addon is forked from another firefox addon [Mactionary](https://addons.mozilla.org/en-US/firefox/addon/mactionary/)
 
 ## How-to-use
 When user right-click on any word on any website, this addon will send the clicked text or selected texts using dict Uri scheme (ex. dict:///keyword) to any supported dictionary software.
