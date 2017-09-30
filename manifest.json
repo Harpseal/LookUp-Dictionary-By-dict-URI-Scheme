@@ -2,7 +2,7 @@
 
   "manifest_version": 2,
   "name": "Look up dictionary by using dict:///",
-  "version": "0.2",
+  "version": "0.3",
 
   "description": "Call any dictionary app by using Uri scheme.",
 
@@ -16,16 +16,8 @@
 
   "permissions": [
     "contextMenus",
-    "menus",
-
-    "cookies",
-    "downloads",
-    "sessions",
-    "storage",
-    "tabs"
+    "menus"
   ],
-
-  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self';",
 
   "background": {
     "scripts": [
