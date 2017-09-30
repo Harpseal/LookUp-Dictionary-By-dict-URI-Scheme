@@ -1,0 +1,10 @@
+{
+  "contextMenuTitle": {
+    "message": "Look up \"$TEXT$\" in Dictionary",
+    "placeholders": {
+      "text": {
+        "content": "$1"
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "contextMenuTitle": {
+    "message": "在字典中查詢 \"$TEXT$\"",
+    "placeholders": {
+      "text": {
+        "content": "$1"
+      }
+    }
+  }
+}

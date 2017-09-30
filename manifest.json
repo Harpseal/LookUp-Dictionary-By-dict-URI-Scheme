@@ -1,0 +1,58 @@
+{
+
+  "manifest_version": 2,
+  "name": "Look up dictionary by using dict:///",
+  "version": "0.2",
+
+  "description": "Call any dictionary app by using Uri scheme.",
+
+  "icons": {
+    "16": "icons/menu_icon_16.png",
+    "32": "icons/menu_icon_32.png",
+    "48": "icons/menu_icon_48.png",
+    "96": "icons/menu_icon_96.png",
+    "512": "icons/menu_icon_512.png"
+  },
+
+  "permissions": [
+    "contextMenus",
+    "menus",
+
+    "cookies",
+    "downloads",
+    "sessions",
+    "storage",
+    "tabs"
+  ],
+
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self';",
+
+  "background": {
+    "scripts": [
+      "background.js"
+
+    ]
+  },
+
+
+  "applications": {
+    "gecko": {
+      "id": "{3a1491de-a5b2-11e7-abc4-cec278b6b50a}"
+    }
+  },
+
+
+  "content_scripts": [
+    {
+      "matches": [ "<all_urls>" ],
+      "match_about_blank": false,
+      "all_frames": true,
+      "run_at": "document_start",
+      "js": [
+        "mouseEvents.js"
+      ]
+    }
+  ],
+
+  "default_locale": "en"
+}
