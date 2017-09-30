@@ -16,10 +16,10 @@ import urllib
 from subprocess import call
 
 if len(sys.argv)>=2:
-  text = sys.argv[1]
-  if text.startswith("dict:///"):
-    text = urllib.unquote(urllib.unquote(text[8:]))
-  call(["/usr/bin/goldendict",text])
+    text = sys.argv[1]
+    if text.startswith("dict:///"):
+        text = urllib.unquote(urllib.unquote(text[8:]))
+    call(["/usr/bin/goldendict",text])
 ```
 
 * Windows ([Autohotkey](https://autohotkey.com/) + [GoldenDict for windows](https://github.com/goldendict/goldendict/wiki/Early-Access-Builds-for-Windows))
@@ -43,11 +43,11 @@ if %0% < 1  ; The left side of a non-expression if-statement is always the name 
 Loop, 1  ; For each parameter:
 {
     param := %A_Index%  ; Fetch the contents of the variable whose name is contained in A_Index.
-	
+    
     StringLeft, url_scheme, param, 8
     if (url_scheme = "dict:///")
         param := SubStr(param, 9)
-		
+        
     param := uriDecode(param)
     Run %dict_path% %param%
 }
@@ -79,27 +79,27 @@ if %0% < 1  ; The left side of a non-expression if-statement is always the name 
 Loop, 1  ; For each parameter:
 {
     param := %A_Index%  ; Fetch the contents of the variable whose name is contained in A_Index.
-	
-	StringLeft, url_scheme, param, 8
-	if (url_scheme = "dict:///")
-	    param := SubStr(param, 9)
-		
-	Clipboard := uriDecode(param)
-	IfWinNotExist ,ahk_class %dict_appname%
-	{
-		SetWorkingDir, %dict_workpath%
-		Run %dict_path%
-	}
-	else
-	{
-	  IfWinNotActive ,ahk_class %dict_appname%
-	  {
-		WinActivate ,ahk_class %dict_appname%
-		Sleep, 200
-	  }
-	  Send ^v
-	  Sleep, 1000
-	  Send {Enter}
-	}
+    
+    StringLeft, url_scheme, param, 8
+    if (url_scheme = "dict:///")
+        param := SubStr(param, 9)
+        
+    Clipboard := uriDecode(param)
+    IfWinNotExist ,ahk_class %dict_appname%
+    {
+        SetWorkingDir, %dict_workpath%
+        Run %dict_path%
+    }
+    else
+    {
+        IfWinNotActive ,ahk_class %dict_appname%
+        {
+        WinActivate ,ahk_class %dict_appname%
+        Sleep, 200
+        }
+        Send ^v
+        Sleep, 1000
+        Send {Enter}
+    }
 }
 ```
