@@ -1,4 +1,4 @@
-A loop-up-dictionary addon for the **modernizing?!?!** firefox 57+.
+﻿A loop-up-dictionary addon for the **modernizing?!?!** firefox 57+.
 
 This addon is forked from another firefox addon [Mactionary](https://addons.mozilla.org/en-US/firefox/addon/mactionary/)
 
@@ -23,7 +23,7 @@ if len(sys.argv)>=2:
 ```
 
 * Windows ([Autohotkey](https://autohotkey.com/) + [GoldenDict for windows](https://github.com/goldendict/goldendict/wiki/Early-Access-Builds-for-Windows))
-```
+```Autohotkey
 dict_path := "C:\Software\GoldenDict\GoldenDict.exe"
 uriDecode(Str)
 {
@@ -50,5 +50,56 @@ Loop, 1  ; For each parameter:
 		
     param := uriDecode(param)
     Run %dict_path% %param%
+}
+```
+
+
+* Windows copy-paste version ([Autohotkey](https://autohotkey.com/) + [YodaoDict(有道词典)](https://www.youdao.com/))
+```Autohotkey
+;YodaoDict(有道词典)
+dict_path := "C:\Software\Youdao\YodaoDict.exe"
+dict_workpath := "C:\Software\Youdao\"
+dict_appname := "YodaoMainWndClass"
+
+uriDecode(Str)
+{
+    Static doc := ComObjCreate("HTMLfile")
+    Try
+    {
+        doc.write("<body><script>document.body.innerText = decodeURIComponent(""" . Str . """);</script>")
+        Return, doc.body.innerText, doc.body.innerText := ""
+    }
+}
+
+if %0% < 1  ; The left side of a non-expression if-statement is always the name of a variable.
+{
+    ExitApp
+}
+
+Loop, 1  ; For each parameter:
+{
+    param := %A_Index%  ; Fetch the contents of the variable whose name is contained in A_Index.
+	
+	StringLeft, url_scheme, param, 8
+	if (url_scheme = "dict:///")
+	    param := SubStr(param, 9)
+		
+	Clipboard := uriDecode(param)
+	IfWinNotExist ,ahk_class %dict_appname%
+	{
+		SetWorkingDir, %dict_workpath%
+		Run %dict_path%
+	}
+	else
+	{
+	  IfWinNotActive ,ahk_class %dict_appname%
+	  {
+		WinActivate ,ahk_class %dict_appname%
+		Sleep, 200
+	  }
+	  Send ^v
+	  Sleep, 1000
+	  Send {Enter}
+	}
 }
 ```
