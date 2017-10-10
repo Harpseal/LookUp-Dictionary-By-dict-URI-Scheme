@@ -6,7 +6,7 @@ This addon is forked from another firefox addon [Mactionary](https://addons.mozi
 When user right-click on any word on any website, this addon will send the clicked text or selected texts using dict Uri scheme (ex. dict:///keyword) to any supported dictionary software.
 The dict:/// Uri scheme is supported by default in macOS. If your OS is Windows or Linux and the GoldenDict is installed, you can use the following scripts to translate the Uri scheme for GoldenDict. Thanks.
 
-GoldenDict is a good freeware. If you don't how to initialize the GoldenDict, pleace check [this git repo](https://github.com/yanyingwang/goldendict).
+GoldenDict is a good freeware. If you don't know how to initialize the GoldenDict, pleace check [this git repo](https://github.com/yanyingwang/goldendict).
 
 * Linux (python + [GoldenDict](http://goldendict.org/))
 ```python

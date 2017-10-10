@@ -61,10 +61,16 @@ window.addEventListener('mousedown', function (event) {
         event.rangeParent.nodeType === event.rangeParent.TEXT_NODE) {
 
         offsetText = event.rangeParent.textContent;
-        offsetText = offsetText.replace(/\s{2,}/g, ' ');
+        
 
         offset = event.rangeOffset;
-        sendToBackground(getText(offsetText, offset));
+
+        var text = getText(offsetText, offset);
+        text = text.replace(/\s{2,}/g, ' ');
+
+        //console.log("mouseDown [" + offsetText + "]=>[" + text + "]" + offset);
+
+        sendToBackground(text);
     } else {
         offsetText = null;
         offset = -1;
@@ -75,7 +81,7 @@ window.addEventListener('mousedown', function (event) {
 
 
 browser.runtime.onMessage.addListener(request => {
-    console.log("browser.runtime.onMessage:" + request.topic + " " + request.data);
+    //console.log("browser.runtime.onMessage:" + request.topic + " " + request.data);
     switch (request.topic)
     {
         case 'dict-lookUp':

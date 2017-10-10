@@ -39,6 +39,12 @@ browser.menus.onClicked.addListener((info, tab) => {
               var removing = browser.tabs.remove(tab.id);
               removing.then(function () {
                   //console.log('Removed');
+                  var removing_menus = browser.menus.remove(contextMenuName);
+                  removing_menus.then(function () {
+                      is_create_menu = false;
+                  }, function () {
+                      console.log("error removing item:" + browser.runtime.lastError);
+                  });
               }, function (error) {
                   console.log('Removed Error: ${error}');
               });
