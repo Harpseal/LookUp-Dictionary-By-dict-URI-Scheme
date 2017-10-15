@@ -1,12 +1,21 @@
-﻿A loop-up-dictionary addon for the **modernizing?!?!** firefox 57+.
+﻿A loop-up-dictionary addon for the more **modernizing** firefox 57+.
 
 This addon is forked from another firefox addon [Mactionary](https://addons.mozilla.org/en-US/firefox/addon/mactionary/)
 
-## How-to-use
-When user right-click on any word on any website, this addon will send the clicked text or selected texts using dict Uri scheme (ex. dict:///keyword) to any supported dictionary software.
-The dict:/// Uri scheme is supported by default in macOS. If your OS is Windows or Linux and the GoldenDict is installed, you can use the following scripts to translate the Uri scheme for GoldenDict. Thanks.
+## Screenshot
 
-GoldenDict is a good freeware. If you don't know how to initialize the GoldenDict, pleace check [this git repo](https://github.com/yanyingwang/goldendict).
+![Screenshot](https://raw.githubusercontent.com/Harpseal/LookUp-Dictionary-By-dict-URI-Scheme/master/screenshot.png)
+
+
+## How-to-use
+
+When user right-click on any word on any website, the "Look up in dictionary" will appear in the context menu right away. Please select it, and this addon will send the clicked text or selected texts using dict Uri scheme (ex. dict:///keyword) to any supported dictionary software.
+
+The dict:/// Uri scheme is supported by the build-in dictionary software in macOS. If your OS is Windows or Linux, you can use the following scripts to translate the Uri scheme for the dictionary software (Take GoldenDict as an example).
+
+Kindly reminded that **all addon will be disable on https://*.mozilla.org domain** and please try this addon on the other website after the installation is completed.
+
+GoldenDict is a good freeware. If you don't know how to initialize the GoldenDict and your native language is Chinese, pleace check [this git repo](https://github.com/yanyingwang/goldendict).
 
 * Linux (python + [GoldenDict](http://goldendict.org/))
 ```python

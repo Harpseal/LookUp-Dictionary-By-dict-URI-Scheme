@@ -61,8 +61,6 @@ window.addEventListener('mousedown', function (event) {
         event.rangeParent.nodeType === event.rangeParent.TEXT_NODE) {
 
         offsetText = event.rangeParent.textContent;
-        
-
         offset = event.rangeOffset;
 
         var text = getText(offsetText, offset);
