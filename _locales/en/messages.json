@@ -1,4 +1,4 @@
-{
+﻿{
   "contextMenuTitle": {
     "message": "Look up \"$TEXT$\" in Dictionary",
     "placeholders": {
@@ -6,5 +6,8 @@
         "content": "$1"
       }
     }
+  },
+  "contextMenuTitleWithoutKeyword": {
+    "message": "Look up in Dictionary"
   }
 }
