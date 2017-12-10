@@ -1,4 +1,4 @@
-﻿A loop-up-dictionary addon for the more **modernizing** firefox 57+.
+﻿A loop-up-dictionary addon for the Firefox 57+.
 
 This addon is forked from another firefox addon [Mactionary](https://addons.mozilla.org/en-US/firefox/addon/mactionary/)
 
@@ -12,6 +12,25 @@ This addon is forked from another firefox addon [Mactionary](https://addons.mozi
 When user right-click on any word on any website, the "Look up in dictionary" will appear in the context menu right away. Please select it, and this addon will send the clicked text or selected texts using dict Uri scheme (ex. dict:///keyword) to any supported dictionary software.
 
 The dict:/// Uri scheme is supported by the build-in dictionary software in macOS. If your OS is Windows or Linux, you can use the following scripts to translate the Uri scheme for the dictionary software (Take GoldenDict as an example).
+
+After some version of Firefox 57+, **Firefox ignores all new custom URI scheme (ex.dict:///) and doesn't show the "Launch application" window as before**, so we have to add it by ourselves. In order to know how to deal with different types of files and URI schemes, Firefox have a internal list to save the action for each content type. The list is showed in Options->Applications. Unfortunately, even if user can change the actions in Options, Firefox doesn't support add or remove file types. We have to edit the list manually. Please take the following steps:
+
+1. Open your Firefox profile folder
+Click the firefox menu button, click Help and select Troubleshooting Information. The Troubleshooting Information tab will open.
+Under the Application Basics section, click on Open Folder. Your profile folder will open.
+
+2. Close firefox
+
+3. Edit "handlers.json"
+Please copy a backup before editing.
+Add ```"dict":{"action":4,"ask":true}``` in the end of json. Please check there are only three } in the end.
+ex.
+```json
+,"itmss":{"action":4,"ask":true},"gameon":{"action":4,"ask":true},"dict":{"action":4,"ask":true}}}
+```
+
+4. Retry and the "Launch application" will open.
+
 
 Kindly reminded that **all addon will be disable on https://*.mozilla.org domain** and please try this addon on the other website after the installation is completed.
 
