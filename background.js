@@ -18,7 +18,7 @@ var text = null;
 var tab_id = null;
 
 
-console.log("background.js isFirefox:" + isFirefox + " isChrome:" + isChrome);
+//console.log("background.js isFirefox:" + isFirefox + " isChrome:" + isChrome);
 
 contextMenuController = isFirefox ? browser.menus : isChrome ? chrome.contextMenus : null;
 
@@ -37,7 +37,6 @@ var menuOnClickFirefox = function (info, tab) {
                     data: text
                 });
             }
-
 
             var uri = 'dict:///' + encodeURIComponent(text);
             //console.log("send uri [" + text + "] [" + uri + "]");
@@ -79,7 +78,6 @@ var menuOnClickChrome = function (info, tab) {
                     data: text
                 });
             }
-
 
             var uri = 'dict:///' + encodeURIComponent(text);
             console.log("send uri [" + text + "] [" + uri + "]");
@@ -193,12 +191,6 @@ var handleMessage = function(message, sender) {
                 else
                     is_create_menu = false;
             }
-
-
-
-            //contextMenuController.update(contextMenuName, {
-            //    enabled: false
-            //});
             break;
     }
     return false;

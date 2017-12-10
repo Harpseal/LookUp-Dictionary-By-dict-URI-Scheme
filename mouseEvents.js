@@ -10,14 +10,13 @@ var isFirefox = typeof InstallTrigger !== 'undefined';
 // Chrome 1+
 var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
 
-console.log("mouseEvent.js isFirefox:" + isFirefox + " isChrome:" + isChrome);
+//console.log("mouseEvent.js isFirefox:" + isFirefox + " isChrome:" + isChrome);
 
 var sendToBackground = function (text)
 {
     if (text === null)
     {
-        console.log("sendToBackground is null");
-
+        //console.log("sendToBackground is null");
         if (isChrome)
             chrome.extension.sendMessage({
                 topic: 'dict-disable'
@@ -29,7 +28,7 @@ var sendToBackground = function (text)
     }
     else
     {
-        console.log("sendToBackground : [" + text + "]");
+        //console.log("sendToBackground : [" + text + "]");
         if (isChrome)
             chrome.extension.sendMessage({
                 topic: 'dict-lookUp',
@@ -110,7 +109,7 @@ if (isFirefox) {
             case 'dict-sendText':
                 if (!request.data) { break; }
                 var uri = 'dict:///' + encodeURIComponent(request.data);
-                console.log("send uri (content) [" + request.data + "] [" + uri + "]");
+                //console.log("send uri (content) [" + request.data + "] [" + uri + "]");
                 break;
         }
         //console.log(request.greeting);
