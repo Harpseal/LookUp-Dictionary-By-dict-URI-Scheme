@@ -1,8 +1,8 @@
 {
 
   "manifest_version": 2,
-  "name": "Look up dictionary",
-  "version": "0.4",
+  "name": "Look up dictionary by using Right Click",
+  "version": "0.5",
 
   "description": "Call any dictionary app by using Uri scheme.",
 
