@@ -15,16 +15,11 @@ The dict:/// Uri scheme is supported by the build-in dictionary software in macO
 
 After some version of Firefox 57+, **Firefox ignores all new custom URI scheme (ex.dict:///) and doesn't show the "Launch application" window as before**, so we have to add it by ourselves. In order to know how to deal with different types of files and URI schemes, Firefox have a internal list to save the action for each content type. The list is showed in Options->Applications. Unfortunately, even if user can change the actions in Options, Firefox doesn't support add or remove file types. We have to edit the list manually. Please take the following steps:
 
-1. Open your Firefox profile folder
-Click the firefox menu button, click Help and select Troubleshooting Information. The Troubleshooting Information tab will open.
-Under the Application Basics section, click on Open Folder. Your profile folder will open.
+1. Open your Firefox profile folder. Click the firefox menu button, click Help and select Troubleshooting Information. The Troubleshooting Information tab will open. Under the Application Basics section, click on Open Folder. Your profile folder will open.
 
-2. Close firefox
+2. Close firefox.
 
-3. Edit "handlers.json"
-Please copy a backup before editing.
-Add ```"dict":{"action":4,"ask":true}``` in the end of json. Please check there are only three } in the end.
-ex.
+3. Edit "handlers.json". Please copy a backup before editing. Add ```"dict":{"action":4,"ask":true}``` in the end of json. Please check there are only three } in the end. Ex.
 ```json
 ,"itmss":{"action":4,"ask":true},"gameon":{"action":4,"ask":true},"dict":{"action":4,"ask":true}}}
 ```
