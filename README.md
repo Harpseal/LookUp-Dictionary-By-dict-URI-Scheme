@@ -6,6 +6,7 @@ This addon is forked from another firefox addon [Mactionary](https://addons.mozi
 
 ![Screenshot](https://raw.githubusercontent.com/Harpseal/LookUp-Dictionary-By-dict-URI-Scheme/master/screenshot.png)
 
+<br>
 
 ## How-to-use
 
@@ -13,9 +14,9 @@ When user right-click on any word on any website, the "Look up in dictionary" wi
 
 The dict:/// Uri scheme is supported by the build-in dictionary software in macOS. If your OS is Windows or Linux, please take the following steps:
 
+<br>
 
-
-1. Prepare the "wrapper script" before installing this addon. (require programming skills)
+**1. Prepare the "wrapper script" before installing this addon. (require programming skills)**
 
 Prepare the "wrapper script" before installing this addon, because this script is the connection to the outside of the Firefox. There are some example scripts written in Python (for Linux users) and Autohotkey (for Windows users) in the end of this guide, and one more Copy/Paste Autohotkey example in the this addon's github page.
 
@@ -31,9 +32,9 @@ C:\Tools> look_up_dict.exe dict:///test
 
 Make sure the dictionary is showed with the word after the dict:/// correctly.
 
+<br>
 
-
-2. Add dict:/// Uri scheme handler
+**2. Add dict:/// Uri scheme handler**
 
 After some version of Firefox 57+, **Firefox ignores all unknown URI scheme (ex.dict:/// on Win/Linux) and doesn't show the "Launch Application" window as before**, so we have to add it by ourselves. In order to know how to deal with different types of files and URI schemes, Firefox have a internal list to save the action for each content type. The list is showed in Options->Applications. Unfortunately, even if user can change the actions in Options, Firefox doesn't support add or remove file types. We have to edit the list manually. Please take the following steps:
 
@@ -52,19 +53,21 @@ ex.
 ...,"itmss":{"action":4,"ask":true},"gameon":{"action":4,"ask":true},"dict":{"action":4,"ask":true}}}
 ```
 
+<br>
 
+**3. Install this addon.**
 
-3. Install this addon.
+After installation, your can try to right click on any text, the "Look up in dictionary" will appear in the context menu. If this is the first time you try to use this addon, a windows named "Launch Application" should open (showed as the following screenshot), please choose the script/exe which you make in the first step. If nothing happens after clicking (the "Launch Application" don't open), it means uri scheme handler don't work properly, please check the second step.
 
-After installation, your can try to right click on any text, the "Look up in dictionary" will appear in the context menu. If this is the first time you try to use this addon, a windows named "Launch Application" (showed as the second screenshot) should open, please choose the script/exe which you make in the first step. If nothing happens after clicking (the "Launch Application" don't open), it means uri scheme handler don't work properly, please check the second step.
+![Launch_Application](https://raw.githubusercontent.com/Harpseal/LookUp-Dictionary-By-dict-URI-Scheme/master/screenshot_launch_application.png)
 
 Kindly reminded that all add-ons will be disable in mozilla's add-ons website (https://addons.mozilla.org) and please try this addon on the other website after the installation is completed.
 
-
+<br>
 
 GoldenDict is a good freeware. If you don't know how to initialize the GoldenDict and your native language is Chinese, pleace check [this git repo](https://github.com/yanyingwang/goldendict).
 
-
+<br>
 
 * Linux (python + [GoldenDict](http://goldendict.org/))
 ```python
@@ -79,6 +82,8 @@ if len(sys.argv)>=2:
         text = urllib.unquote(urllib.unquote(text[8:]))
     call(["/usr/bin/goldendict",text])
 ```
+
+<br>
 
 * Windows ([Autohotkey](https://autohotkey.com/) + [GoldenDict for windows](https://github.com/goldendict/goldendict/wiki/Early-Access-Builds-for-Windows))
 ```Autohotkey
@@ -110,7 +115,7 @@ Loop, 1  ; For each parameter:
     Run %dict_path% %param%
 }
 ```
-
+<br>
 
 * Windows copy-paste version ([Autohotkey](https://autohotkey.com/) + [YodaoDict(有道词典)](https://www.youdao.com/))
 ```Autohotkey
