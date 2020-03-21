@@ -199,8 +199,10 @@ var handleMessage = function(message, sender) {
     return false;
 };
 
-if (isFirefox)
-    browser.runtime.onMessage.addListener(handleMessage);
-else if (isChrome)
-    chrome.extension.onMessage.addListener(handleMessage);
+
+browser.runtime.onMessage.addListener(handleMessage);
+//if (isFirefox)
+//    browser.runtime.onMessage.addListener(handleMessage);
+//else if (isChrome)
+//    chrome.extension.onMessage.addListener(handleMessage);
 

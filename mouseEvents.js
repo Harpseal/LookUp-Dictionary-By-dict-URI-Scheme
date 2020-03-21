@@ -10,6 +10,7 @@ var isFirefox = typeof InstallTrigger !== 'undefined';
 // Chrome 1+
 var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
 
+isFirefox = true;
 //console.log("mouseEvent.js isFirefox:" + isFirefox + " isChrome:" + isChrome);
 
 var sendToBackground = function (text)
@@ -18,9 +19,10 @@ var sendToBackground = function (text)
     {
         //console.log("sendToBackground is null");
         if (isChrome)
-            chrome.extension.sendMessage({
-                topic: 'dict-disable'
-            });
+            // chrome.extension.sendMessage({
+            //     topic: 'dict-disable'
+            // });
+            console.log("chrome support is disabled");
         else if (isFirefox)
             browser.runtime.sendMessage({
                 topic: 'dict-disable'
@@ -30,12 +32,13 @@ var sendToBackground = function (text)
     {
         //console.log("sendToBackground : [" + text + "]");
         if (isChrome)
-            chrome.extension.sendMessage({
-                topic: 'dict-lookUp',
-                data: {
-                    text: text
-                }
-            });
+            // chrome.extension.sendMessage({
+            //     topic: 'dict-lookUp',
+            //     data: {
+            //         text: text
+            //     }
+            // });
+            console.log("chrome support is disabled");
         else if (isFirefox)
             browser.runtime.sendMessage({
                 topic: 'dict-lookUp',
@@ -43,7 +46,7 @@ var sendToBackground = function (text)
                     text: text
                 }
             });
-    }     
+    }
 }
 
 var getText = function (text, selected_offset) {
@@ -98,7 +101,7 @@ if (isFirefox) {
             sendToBackground(null);
         }
     } , true);
-    
+
     browser.runtime.onMessage.addListener(request => {
         //console.log("browser.runtime.onMessage:" + request.topic + " " + request.data);
         switch (request.topic) {
@@ -117,93 +120,94 @@ if (isFirefox) {
     });
 }
 else if (isChrome) {
-    document.addEventListener('mousedown', function (event) {
-        if (event.button === 2 && event.target.firstChild != null && event.target.firstChild.nodeType == event.target.TEXT_NODE) {
-            var elem = event.target.firstChild;
+    console.log("chrome support is disabled");
+    // document.addEventListener('mousedown', function (event) {
+    //     if (event.button === 2 && event.target.firstChild != null && event.target.firstChild.nodeType == event.target.TEXT_NODE) {
+    //         var elem = event.target.firstChild;
 
-            var text_found = false;
-            var text = "";
+    //         var text_found = false;
+    //         var text = "";
 
-            while (elem != null && !text_found) {
-                var range = elem.ownerDocument.createRange();
-                range.selectNodeContents(elem);
-                var currentPos = 0;
-                var endPos = range.endOffset;
+    //         while (elem != null && !text_found) {
+    //             var range = elem.ownerDocument.createRange();
+    //             range.selectNodeContents(elem);
+    //             var currentPos = 0;
+    //             var endPos = range.endOffset;
 
-                var x = event.clientX;
-                var y = event.clientY;
-                while (currentPos + 1 < endPos && !text_found) {
-                    range.setStart(elem, currentPos);
-                    range.setEnd(elem, currentPos + 1);
-                    if (range.getBoundingClientRect().left <= x && range.getBoundingClientRect().right >= x &&
-                        range.getBoundingClientRect().top <= y && range.getBoundingClientRect().bottom >= y) {
-                        //range.expand("word");
+    //             var x = event.clientX;
+    //             var y = event.clientY;
+    //             while (currentPos + 1 < endPos && !text_found) {
+    //                 range.setStart(elem, currentPos);
+    //                 range.setEnd(elem, currentPos + 1);
+    //                 if (range.getBoundingClientRect().left <= x && range.getBoundingClientRect().right >= x &&
+    //                     range.getBoundingClientRect().top <= y && range.getBoundingClientRect().bottom >= y) {
+    //                     //range.expand("word");
 
-                        offsetText = elem.textContent;
-                        offset = currentPos;
+    //                     offsetText = elem.textContent;
+    //                     offset = currentPos;
 
-                        text = getText(offsetText, offset);
-                        text_found = true;
-                        range.detach();
-                        currentPos = endPos;
-                    }
-                    currentPos += 1;
-                }
-                if (!text_found)
-                    elem = elem.nextSibling;
-            }
-            console.log("result:[" + text + "]");
-
-
-            if (text_found) {
+    //                     text = getText(offsetText, offset);
+    //                     text_found = true;
+    //                     range.detach();
+    //                     currentPos = endPos;
+    //                 }
+    //                 currentPos += 1;
+    //             }
+    //             if (!text_found)
+    //                 elem = elem.nextSibling;
+    //         }
+    //         console.log("result:[" + text + "]");
 
 
-                //var text = ;
-
-                if (text !== null && text !== undefined)
-                    text = text.replace(/\s{2,}/g, ' ');
-                else
-                    console.error("getText Error[" + offsetText + "]" + offset);
-
-                console.log("mouseDown [" + offsetText + "]");
-                console.log("=>[" + text + "]" + offset);
-                sendToBackground(text);
-            }
-            else
-            {
-                offsetText = null;
-                offset = -1;
-                sendToBackground(null);
-            }
+    //         if (text_found) {
 
 
-        } else {
-            offsetText = null;
-            offset = -1;
-            sendToBackground(null);
-        }
-    }, true);
+    //             //var text = ;
 
-    chrome.extension.onMessage.addListener(request => {
-        //console.log("browser.runtime.onMessage:" + request.topic + " " + request.data);
-        switch (request.topic) {
-            case 'dict-lookUp':
-                if (!request.data) { break; }
-                //var uri = 'dict:///' + encodeURIComponent(request.data);
-                break;
-            case 'dict-sendText':
-                if (!request.data) { break; }
-                var uri = 'dict:///' + encodeURIComponent(request.data);
-                console.log("send uri (chrome) [" + request.data + "] [" + uri + "]");
+    //             if (text !== null && text !== undefined)
+    //                 text = text.replace(/\s{2,}/g, ' ');
+    //             else
+    //                 console.error("getText Error[" + offsetText + "]" + offset);
 
-                var w = (window.parent) ? window.parent : window;
-                w.location.assign(uri);
-                sendToBackground(null);
-                //navigator.registerProtocolHandler("dict", uri, "dict");
+    //             console.log("mouseDown [" + offsetText + "]");
+    //             console.log("=>[" + text + "]" + offset);
+    //             sendToBackground(text);
+    //         }
+    //         else
+    //         {
+    //             offsetText = null;
+    //             offset = -1;
+    //             sendToBackground(null);
+    //         }
 
-                break;
-        }
 
-    });
+    //     } else {
+    //         offsetText = null;
+    //         offset = -1;
+    //         sendToBackground(null);
+    //     }
+    // }, true);
+
+    // chrome.extension.onMessage.addListener(request => {
+    //     //console.log("browser.runtime.onMessage:" + request.topic + " " + request.data);
+    //     switch (request.topic) {
+    //         case 'dict-lookUp':
+    //             if (!request.data) { break; }
+    //             //var uri = 'dict:///' + encodeURIComponent(request.data);
+    //             break;
+    //         case 'dict-sendText':
+    //             if (!request.data) { break; }
+    //             var uri = 'dict:///' + encodeURIComponent(request.data);
+    //             console.log("send uri (chrome) [" + request.data + "] [" + uri + "]");
+
+    //             var w = (window.parent) ? window.parent : window;
+    //             w.location.assign(uri);
+    //             sendToBackground(null);
+    //             //navigator.registerProtocolHandler("dict", uri, "dict");
+
+    //             break;
+    //     }
+
+    // });
 }
 

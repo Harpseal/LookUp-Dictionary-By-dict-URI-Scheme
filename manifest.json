@@ -2,7 +2,7 @@
 
   "manifest_version": 2,
   "name": "Look up dictionary by using Right Click",
-  "version": "0.5",
+  "version": "0.6.1",
 
   "description": "Call any dictionary app by using Uri scheme.",
 

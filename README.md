@@ -57,7 +57,7 @@ ex.
 
 **3. Install this addon.**
 
-After installation, your can try to right click on any text, the "Look up in dictionary" will appear in the context menu. If this is the first time you try to use this addon, a windows named "Launch Application" should open (showed as the following screenshot), please choose the script/exe which you make in the first step. If nothing happens after clicking (the "Launch Application" don't open), it means uri scheme handler don't work properly, please check the second step.
+After installation, your can try to right click on any text, the "Look up in dictionary" will appear in the context menu. If this is the first time you try to use this addon, a windows named "Launch Application" should open (showed as the following screenshot), please choose the script/exe which you make in the first step.
 
 ![Launch_Application](https://raw.githubusercontent.com/Harpseal/LookUp-Dictionary-By-dict-URI-Scheme/master/screenshot_launch_application.png)
 
