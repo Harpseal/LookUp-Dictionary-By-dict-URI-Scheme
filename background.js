@@ -42,22 +42,25 @@ var menuOnClickFirefox = function (info, tab) {
             //console.log("send uri [" + text + "] [" + uri + "]");
             var creating = browser.tabs.create({
                 url: uri,
-                active: false
+                active: false,
+                discarded: false
             });
             creating.then(function (tab) {
-                //console.log('Created new tab: ${tab.id}')
-                var removing = browser.tabs.remove(tab.id);
-                removing.then(function () {
-                    //console.log('Removed');
-                    var removing_menus = contextMenuController.remove(contextMenuName);
-                    removing_menus.then(function () {
-                        is_create_menu = false;
-                    }, function () {
-                        console.log("error removing item:" + browser.runtime.lastError);
+                //console.log('created new tab: '+tab.id)
+                window.setTimeout(function (){
+                    var removing = browser.tabs.remove(tab.id);
+                    removing.then(function () {
+                        //console.log('Removed');
+                        var removing_menus = contextMenuController.remove(contextMenuName);
+                        removing_menus.then(function () {
+                            is_create_menu = false;
+                        }, function () {
+                            console.log("error removing item:" + browser.runtime.lastError);
+                        });
+                    }, function (error) {
+                        console.log('Removed Error: ${error}');
                     });
-                }, function (error) {
-                    console.log('Removed Error: ${error}');
-                });
+                },30);
             }, function (error) {
                 console.log('Creating tab Error: ${error}');
             });
@@ -95,7 +98,7 @@ if (contextMenuController != null) {
     else if (isChrome)
         contextMenuController.onClicked.addListener(menuOnClickChrome);
 }
-    
+
 
 
 var shorten = function (t) {
