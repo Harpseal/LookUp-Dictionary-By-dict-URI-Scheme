@@ -105,7 +105,7 @@ Please uncheck the checkbox and click the save buttom in the Option page of this
 
 ![permission_1_0](https://raw.githubusercontent.com/Harpseal/LookUp-Dictionary-By-dict-URI-Scheme/master/screenshot/permission_1_0.png)
 
-![permission_1_1](https://raw.githubusercontent.com/Harpseal/LookUp-Dictionary-By-dict-URI-Scheme/master/screenshot/permission_1_0.png)
+![permission_1_1](https://raw.githubusercontent.com/Harpseal/LookUp-Dictionary-By-dict-URI-Scheme/master/screenshot/permission_1_1.png)
 
 <br>
 
