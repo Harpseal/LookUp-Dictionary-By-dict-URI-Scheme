@@ -16,16 +16,20 @@
 
   "permissions": [
     "contextMenus",
-    "menus"
+    "menus",
+    "storage"
   ],
 
   "background": {
     "scripts": [
       "background.js"
-
     ]
   },
 
+  "options_ui": {
+    "page": "options.html",
+    "browser_style": true
+  },
 
   "applications": {
     "gecko": {

@@ -2,6 +2,21 @@
 
 This addon is forked from another firefox addon [Mactionary](https://addons.mozilla.org/en-US/firefox/addon/mactionary/)
 
+<br>
+
+**Update for firefox 84+ users**
+
+There is a new permission dialog to approve after firefox 84+.
+
+Please open the Options page of this addon, check the checkbox, press the save button and try to look up some word.
+The temporary tab for dict scheme will not be closed and leave the permission dialog for user to approve.
+
+After the permission is approved, please uncheck this checkbox in the Option page for normal use.
+
+For more detail pleace check the [How-to-use step4](#permission-guide).
+
+<br>
+
 ## Screenshot
 
 ![Screenshot](https://raw.githubusercontent.com/Harpseal/LookUp-Dictionary-By-dict-URI-Scheme/master/screenshot.png)
@@ -46,7 +61,7 @@ Under the Application Basics section, click on Open Folder. Your profile folder 
 
 2.3. Edit "handlers.json" <br>
 Please copy a backup before editing.
-Add "dict":{"action":4,"ask":true} in the end of json. Please check there are only three } in the end of file.
+Add ```,"dict":{"action":4,"ask":true}``` in the end of json. Please check there are only three } in the end of file.
 
 ex.
 ```json
@@ -75,6 +90,25 @@ The different of ```dict:///``` uri scheme showed in address bar before/after se
 |:----------:|:-----------:|
 | ![address_bar_0](https://raw.githubusercontent.com/Harpseal/LookUp-Dictionary-By-dict-URI-Scheme/master/screenshot/address_bar_0.png)| ![address_bar_1](https://raw.githubusercontent.com/Harpseal/LookUp-Dictionary-By-dict-URI-Scheme/master/screenshot/address_bar_1.png)|
 
+
+**4. Approve permission to run the wrapper script** (only for firefox 84+) <a href='#permission-guide' id='permission-guide' class='anchor'>></a>
+
+<br>
+
+Look up a keyword at the first time, the temporary tab for dict scheme will not be closed and leave the permission dialog as shown below for user to approve which is a new feature after **firefox 84+**.
+
+If no temporary tab are shown and the wrapper script is not triggered, please open the Options page of this addon and check the checkbox to keep the temporary tab open.
+
+![permission_0](https://raw.githubusercontent.com/Harpseal/LookUp-Dictionary-By-dict-URI-Scheme/master/screenshot/permission_0.png)
+
+Please uncheck the checkbox and click the save buttom in the Option page of this addon for normal use.
+
+![permission_1_0](https://raw.githubusercontent.com/Harpseal/LookUp-Dictionary-By-dict-URI-Scheme/master/screenshot/permission_1_0.png)
+
+![permission_1_1](https://raw.githubusercontent.com/Harpseal/LookUp-Dictionary-By-dict-URI-Scheme/master/screenshot/permission_1_0.png)
+
+<br>
+
 Kindly reminded that all add-ons will be disable in mozilla's add-ons website (https://addons.mozilla.org) and please try this addon on the other website after the installation is completed.
 
 <br>
@@ -83,7 +117,7 @@ GoldenDict is a good freeware. If you don't know how to initialize the GoldenDic
 
 <br>
 
-* Linux (python + [GoldenDict](http://goldendict.org/))
+* Linux (python2.x or python3.x + [GoldenDict](http://goldendict.org/))
 ```python
 #!/usr/bin/python
 import sys
@@ -96,7 +130,21 @@ if len(sys.argv)>=2:
         text = urllib.unquote(urllib.unquote(text[8:]))
     call(["/usr/bin/goldendict",text])
 ```
+```python
+#!/usr/bin/python3
+#Author : XenHat (https://github.com/XenHat)
+import sys
+import urllib
+import urllib.parse
+from subprocess import call
 
+if len(sys.argv) >= 2:
+    text = sys.argv[1]
+    if text.startswith("dict:///"):
+        text = urllib.parse.unquote(urllib.parse.unquote(text[8:]))
+        call(["/usr/bin/goldendict", text])
+```
+Thanks [XenHat](https://github.com/XenHat) to privide the python3.x script.
 <br>
 
 * Windows ([Autohotkey](https://autohotkey.com/) + [GoldenDict for windows](https://github.com/goldendict/goldendict/wiki/Early-Access-Builds-for-Windows))

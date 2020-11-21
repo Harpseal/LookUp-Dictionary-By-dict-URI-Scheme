@@ -16,7 +16,15 @@ var contextMenuController;
 var is_create_menu = false;
 var text = null;
 var tab_id = null;
+var browser_version = null;
 
+var gettingInfo = browser.runtime.getBrowserInfo();
+gettingInfo.then(function (info) {
+    const parsed = parseInt(info.version, 10);
+    if (!isNaN(parsed))
+        browser_version = parsed;
+    console.log(info.version,browser_version);
+});
 
 //console.log("background.js isFirefox:" + isFirefox + " isChrome:" + isChrome);
 
@@ -47,27 +55,40 @@ var menuOnClickFirefox = function (info, tab) {
             });
             creating.then(function (tab) {
                 //console.log('created new tab: '+tab.id)
-                window.setTimeout(function (){
-                    var removing = browser.tabs.remove(tab.id);
-                    removing.then(function () {
-                        //console.log('Removed');
-                        var removing_menus = contextMenuController.remove(contextMenuName);
-                        removing_menus.then(function () {
-                            is_create_menu = false;
-                        }, function () {
-                            console.log("error removing item:" + browser.runtime.lastError);
-                        });
-                    }, function (error) {
-                        console.log('Removed Error: ${error}');
-                    });
-                },30);
-            }, function (error) {
-                console.log('Creating tab Error: ${error}');
-            });
+
+                function onGot(item) {
+                    var is_keep_tab = browser_version && browser_version>=84;
+                    if (item.checkbox_keeptab != null) {
+                        is_keep_tab = item.checkbox_keeptab
+                    }
+                    console.log('keep:' + is_keep_tab);
+                    if (!is_keep_tab)
+                    {
+                        window.setTimeout(function (){
+                            var removing = browser.tabs.remove(tab.id);
+                            removing.then(function () {
+                                //console.log('Removed');
+                                var removing_menus = contextMenuController.remove(contextMenuName);
+                                removing_menus.then(function () {
+                                    is_create_menu = false;
+                                }, function () {
+                                    console.log("error removing item:" + browser.runtime.lastError);
+                                });
+                            }, function (error) {
+                                console.log('Removed Error: ${error}');
+                            });
+                        },30);
+                    }
+                }
+
+                let getting = browser.storage.sync.get("checkbox_keeptab");
+                getting.then(onGot, function (error) {
+                    console.log('Error: ${error}')
+                });
+
+            }, );
 
             break;
-
-
     }
 };
 
