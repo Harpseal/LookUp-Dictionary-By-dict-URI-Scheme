@@ -1,10 +1,10 @@
 'use strict';
 
 // Firefox 1.0+
-var isFirefox = typeof InstallTrigger !== 'undefined';
+var isFirefox = true; //typeof InstallTrigger !== 'undefined';
 
 // Chrome 1+
-var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+var isChrome = false; // /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
 
 /*
 Called when the item has been created, or when creation failed due to an error.
